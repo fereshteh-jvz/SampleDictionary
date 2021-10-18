@@ -16,7 +16,10 @@ constructor(
 ) {
 
     fun getWordsList(): Flow<List<WordsEntity>> {
-        Log.e("aaaa", "Flow")
         return wordsDao.getWords()
+    }
+
+    fun searchWordsList(query: String): Flow<List<WordsEntity>> {
+        return wordsDao.searchWords(query)
     }
 }
