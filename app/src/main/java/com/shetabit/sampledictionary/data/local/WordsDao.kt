@@ -1,4 +1,4 @@
-package com.shetabit.sampledictionary.data
+package com.shetabit.sampledictionary.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert

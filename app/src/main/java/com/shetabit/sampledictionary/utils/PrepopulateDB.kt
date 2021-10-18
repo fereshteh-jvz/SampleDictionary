@@ -5,11 +5,9 @@ import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
-import com.shetabit.sampledictionary.data.AppDatabase
-import com.shetabit.sampledictionary.data.WordsEntity
-import kotlinx.coroutines.CoroutineScope
+import com.shetabit.sampledictionary.data.local.AppDatabase
+import com.shetabit.sampledictionary.data.local.WordsEntity
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class PrepopulateDB(private val context: Context) {

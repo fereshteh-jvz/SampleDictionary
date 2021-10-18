@@ -1,4 +1,4 @@
-package com.shetabit.sampledictionary.data
+package com.shetabit.sampledictionary.data.local
 
 import android.content.Context
 import android.util.Log
@@ -11,11 +11,6 @@ import com.shetabit.sampledictionary.utils.PrepopulateDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.json.JSONArray
-import org.json.JSONException
-import java.io.IOException
-import java.io.InputStream
-import java.nio.charset.StandardCharsets
 
 
 @Database(entities = [WordsEntity::class], version = 1, exportSchema = false)

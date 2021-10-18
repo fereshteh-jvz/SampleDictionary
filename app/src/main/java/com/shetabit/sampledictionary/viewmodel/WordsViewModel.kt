@@ -2,7 +2,7 @@ package com.shetabit.sampledictionary.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.shetabit.sampledictionary.data.WordsEntity
+import com.shetabit.sampledictionary.data.local.WordsEntity
 import com.shetabit.sampledictionary.repository.WordsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview

@@ -1,9 +1,8 @@
 package com.shetabit.sampledictionary.di
 
 import android.content.Context
-import androidx.room.RoomDatabase
-import com.shetabit.sampledictionary.data.AppDatabase
-import com.shetabit.sampledictionary.data.WordsDao
+import com.shetabit.sampledictionary.data.local.AppDatabase
+import com.shetabit.sampledictionary.data.local.WordsDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

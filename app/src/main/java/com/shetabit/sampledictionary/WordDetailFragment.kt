@@ -17,11 +17,6 @@ class WordDetailFragment : BottomSheetDialogFragment() {
     private val args: WordDetailFragmentArgs by navArgs()
 
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return super.onCreateDialog(savedInstanceState)
-    }
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
