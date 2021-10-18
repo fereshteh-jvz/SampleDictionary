@@ -5,6 +5,8 @@ import androidx.lifecycle.*
 import com.shetabit.sampledictionary.data.WordsEntity
 import com.shetabit.sampledictionary.repository.WordsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.debounce
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,17 +20,14 @@ constructor(val repository: WordsRepository) : ViewModel() {
         searchQuery.value = ""
     }
 
-    /*fun getWordsList(): LiveData<List<WordsEntity>> {
-        return repository.getWordsList().asLiveData()
-    }*/
-
+    @FlowPreview
     fun wordsList(): LiveData<List<WordsEntity>> {
         Log.e("viewmodel", "query " + searchQuery.value.toString())
         return Transformations.switchMap(searchQuery) { query ->
             if (searchQuery.value.isNullOrBlank()) {
                 repository.getWordsList().asLiveData()
             } else
-                repository.searchWordsList(query).asLiveData()
+                repository.searchWordsList(query).debounce(500).asLiveData()
         }
     }
 
@@ -37,7 +36,7 @@ constructor(val repository: WordsRepository) : ViewModel() {
         searchQuery.value = query.ignoreExtraWhiteSpace()
     }
 
-    fun String.ignoreExtraWhiteSpace():String{
+    fun String.ignoreExtraWhiteSpace(): String {
         return replace("\\s+".toRegex(), " ")
     }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/nav_word"
+  app:startDestination="@id/wordListFragment">
+
+
+  <fragment
+    android:id="@+id/wordListFragment"
+    android:name="com.shetabit.sampledictionary.WordListFragment"
+    android:label="WordListFragment">
+    <action
+      android:id="@+id/action_wordList_to_wordDetail"
+      app:destination="@id/wordDetailFragment" />
+  </fragment>
+
+  <dialog
+    android:id="@+id/wordDetailFragment"
+    android:name="com.shetabit.sampledictionary.WordDetailFragment"
+    android:label="WordDetailFragment" >
+  <argument
+    android:name="title"
+    app:argType="string" />
+  </dialog>
+</navigation>

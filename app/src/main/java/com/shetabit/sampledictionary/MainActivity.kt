@@ -21,25 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        adapter = WordsAdapter()
-        binding.list.adapter = adapter
-
-        getWords()
-        search()
     }
 
 
-    private fun getWords() {
-        viewModel.wordsList().observe(this, {
-            adapter.setItems(it)
-        })
-    }
-
-
-    private fun search() {
-        binding.edtSearch.doOnTextChanged { text, start, before, count ->
-            viewModel.search(text.toString())
-        }
-    }
 }
