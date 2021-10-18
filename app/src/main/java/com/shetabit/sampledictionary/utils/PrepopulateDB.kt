@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 
 class PrepopulateDB(private val context: Context) {
 
-    fun populate() {
+    suspend fun populate() = withContext(Dispatchers.IO) {
         val fileName = "words.json"
         try {
             Log.e(TAG, "populate")
@@ -28,11 +28,8 @@ class PrepopulateDB(private val context: Context) {
                     val db = AppDatabase.getInstance(context)
                     val wordEntities = wordsList.map { WordsEntity(0, it) }
                     Log.e(TAG, "wordEntities $wordEntities")
-
-                    CoroutineScope(Dispatchers.IO).launch {
-                        db.wordsDao().insertAll(wordEntities)
-                        Log.e(TAG, "insertAll")
-                    }
+                    db.wordsDao().insertAll(wordEntities)
+                    Log.e(TAG, "insertAll")
 
                 }
             }

@@ -8,6 +8,9 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.shetabit.sampledictionary.utils.DATABSE_NAME
 import com.shetabit.sampledictionary.utils.PrepopulateDB
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.json.JSONArray
 import org.json.JSONException
 import java.io.IOException
@@ -26,7 +29,7 @@ abstract class AppDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): AppDatabase {
             return instance ?: synchronized(this) {
-                Log.e("database","db")
+                Log.e("database", "db")
                 instance ?: buildDatabase(context).also { instance = it }
             }
         }
@@ -38,15 +41,16 @@ abstract class AppDatabase : RoomDatabase() {
                     object : RoomDatabase.Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             super.onCreate(db)
-                            Log.e("database","callback")
-                            PrepopulateDB(context).populate()
+                            Log.e("database", "callback")
+                            CoroutineScope(Dispatchers.IO).launch {
+                                PrepopulateDB(context).populate()
+                            }
                         }
                     }
                 )
                 .build()
         }
     }
-
 
 
 }
