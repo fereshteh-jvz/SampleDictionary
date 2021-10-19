@@ -1,11 +1,8 @@
 package com.shetabit.sampledictionary
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
-import androidx.core.widget.doOnTextChanged
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
 import com.shetabit.sampledictionary.databinding.ActivityMainBinding
 import com.shetabit.sampledictionary.viewmodel.WordsViewModel
 import dagger.hilt.android.AndroidEntryPoint

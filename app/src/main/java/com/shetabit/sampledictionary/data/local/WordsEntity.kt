@@ -8,6 +8,8 @@ data class WordsEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val title: String,
-    val definition: String="",
-    val example: String=""
-)
+    val definition: String = "",
+    val example: String = ""
+) {
+    var isSelected = false
+}

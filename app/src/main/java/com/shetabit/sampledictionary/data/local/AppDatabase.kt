@@ -13,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-@Database(entities = [WordsEntity::class], version = 1, exportSchema = false)
+@Database(entities = [WordsEntity::class,UserWordsEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun wordsDao(): WordsDao
 

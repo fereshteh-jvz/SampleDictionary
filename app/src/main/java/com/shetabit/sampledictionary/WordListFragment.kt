@@ -1,18 +1,22 @@
 package com.shetabit.sampledictionary
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.core.widget.doOnTextChanged
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.snackbar.Snackbar
 import com.shetabit.sampledictionary.databinding.ActivityMainBinding
 import com.shetabit.sampledictionary.databinding.FragmentWordListBinding
 import com.shetabit.sampledictionary.viewmodel.WordsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.FlowPreview
+import java.lang.Exception
 
 @AndroidEntryPoint
 class WordListFragment : Fragment() {
@@ -27,8 +31,6 @@ class WordListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentWordListBinding.inflate(layoutInflater)
-
-
         adapter = WordsAdapter()
         binding.list.adapter = adapter
 

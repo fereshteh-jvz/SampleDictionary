@@ -17,9 +17,13 @@
   <dialog
     android:id="@+id/wordDetailFragment"
     android:name="com.shetabit.sampledictionary.WordDetailFragment"
-    android:label="WordDetailFragment" >
-  <argument
-    android:name="title"
-    app:argType="string" />
+    android:label="WordDetailFragment">
+    <argument
+      android:name="title"
+      app:argType="string" />
+    <argument
+      android:name="id"
+      app:argType="integer" />
+
   </dialog>
 </navigation>
