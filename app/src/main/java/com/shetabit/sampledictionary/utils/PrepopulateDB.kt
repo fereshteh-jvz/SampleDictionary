@@ -19,16 +19,12 @@ class PrepopulateDB(private val context: Context) {
             context.assets.open(fileName).use { inputStream ->
                 JsonReader(inputStream.reader()).use { jsonReader ->
                     val wordsType = object : TypeToken<List<String>>() {}.type
-                    Log.e(TAG, "wordsType $wordsType")
                     val wordsList: List<String> = Gson().fromJson(jsonReader, wordsType)
-                    Log.e(TAG, "wordsList $wordsList")
 
                     val db = AppDatabase.getInstance(context)
                     val wordEntities = wordsList.map { WordsEntity(0, it) }
-                    Log.e(TAG, "wordEntities $wordEntities")
                     db.wordsDao().insertAll(wordEntities)
                     Log.e(TAG, "insertAll")
-
                 }
             }
         } catch (e: Exception) {

@@ -29,6 +29,10 @@ class WordsAdapter : RecyclerView.Adapter<WordsAdapter.WordViewHolder>() {
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val item = items[position]
         holder.txtTitle.text = item.title
+        if (item.isSelected)
+            holder.imgSeen.visibility = View.VISIBLE
+        else
+            holder.imgSeen.visibility = View.GONE
         holder.card.setOnClickListener {
             navigateToDetail(it, item)
         }

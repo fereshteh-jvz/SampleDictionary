@@ -38,12 +38,19 @@ constructor(
     suspend fun getWordDetail(id: Int, word: String): Flow<DataState<WordsEntity>> = flow {
         emit(DataState.Loading)
         if (wordsDao.isWordSelected(id)) {
-            emit(DataState.Success(wordsDao.wordDetail(word)))
+            emit(DataState.Success(wordsDao.wordDetail(id)))
         } else {
             try {
                 val networkRes = retrofitService.wordDetail(word)
-                updateWordEntity(id, networkRes.get(0))
-                emit(DataState.Success(wordsDao.wordDetail(word)))
+                Log.e("Words", "networkResult " + networkRes.get(0).word)
+                Log.e("Words", "query " + word)
+                if (networkRes.get(0).word.equals(word, true)) {
+                    updateWordEntity(id, networkRes.get(0))
+                    emit(DataState.Success(wordsDao.wordDetail(id)))
+                } else {
+                    emit(DataState.Error("No Definitions Found"))
+                }
+
             } catch (e: Exception) {
                 if (e is HttpException)
                     emit(DataState.Error("No Definitions Found"))
@@ -66,7 +73,6 @@ constructor(
         } catch (e: Exception) {
             Log.e("Exception", "Failure: $e")
         }
-
         val word = WordsEntity(id, item.word, definition, example)
         wordsDao.insert(word)
         insertUserWord(id)

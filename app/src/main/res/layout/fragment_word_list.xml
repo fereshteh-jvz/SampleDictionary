@@ -4,15 +4,20 @@
   xmlns:tools="http://schemas.android.com/tools">
 
   <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/content">
+    android:layout_height="match_parent">
+
+
 
     <EditText
       android:id="@+id/edtSearch"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:hint="Search"
+      android:padding="8dp"
+      android:layout_margin="9dp"
+      android:background="@drawable/edt_back"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
@@ -31,5 +36,8 @@
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toBottomOf="@id/edtSearch"
       tools:listitem="@layout/item_dictionary" />
+
+
+
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -18,17 +18,14 @@ interface WordsDao {
     @Insert
     suspend fun insertAll(words: List<WordsEntity>)
 
-    @Query("SELECT WordsEntity.* FROM WordsEntity LEFT JOIN USERWORDS on id = wordRef limit 50")
+    @Query("SELECT WordsEntity.*,USERWORDS.wordRef AS wordId FROM WordsEntity LEFT JOIN USERWORDS on id = wordRef limit 50")
     fun getWords(): Flow<List<WordsEntity>>
 
-    @Query("SELECT * FROM USERWORDS limit 50")
-    fun getWords1(): Flow<List<UserWordsEntity>>
-
-    @Query("SELECT * FROM WordsEntity where title like '%' || :query || '%' limit 50")
+    @Query("SELECT WordsEntity.*,USERWORDS.wordRef AS wordId FROM WordsEntity LEFT JOIN USERWORDS on id = wordRef where title like '%' || :query || '%' limit 50")
     fun searchWords(query: String): Flow<List<WordsEntity>>
 
-    @Query("SELECT * FROM WordsEntity WHERE title like '%' || :query || '%'")
-    fun wordDetail(query: String): WordsEntity
+    @Query("SELECT * FROM WordsEntity WHERE id=:id")
+    fun wordDetail(id: Int): WordsEntity
 
     @Query("SELECT EXISTS(SELECT 1 FROM userwords WHERE wordRef = :id LIMIT 1)")
     suspend fun isWordSelected(id: Int): Boolean

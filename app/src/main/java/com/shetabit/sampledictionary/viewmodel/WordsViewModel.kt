@@ -31,8 +31,8 @@ constructor(val repository: WordsRepository) : ViewModel() {
 
     @FlowPreview
     fun wordsList(): LiveData<List<WordsEntity>> {
-        Log.e("viewmodel", "query " + searchQuery.value.toString())
         return Transformations.switchMap(searchQuery) { query ->
+            Log.e("viewmodel", "query " + searchQuery.value.toString())
             if (searchQuery.value.isNullOrBlank()) {
                 repository.getWordsList().asLiveData()
             } else

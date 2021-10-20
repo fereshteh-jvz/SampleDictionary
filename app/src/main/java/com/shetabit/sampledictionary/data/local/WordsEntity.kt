@@ -11,5 +11,7 @@ data class WordsEntity(
     val definition: String = "",
     val example: String = ""
 ) {
+    var wordId = 0
     var isSelected = false
+        get() = wordId > 0
 }
